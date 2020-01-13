@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>时钟</title>
+  <style lang="less">
+    .clockBox {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: #f6f6f6;
+      margin: 100px auto;
+      box-sizing: border-box;
+      border: 1px solid #000;
+      overflow: hidden;
+    }
+
+    .Oo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      margin-top: -3px;
+      margin-left: -3px;
+      background: #000;
+      z-index: 4;
+      border-radius: 50%;
+    }
+
+    .hours {
+      position: absolute;
+      left: 50%;
+      top: 20%;
+      width: 4px;
+      height: 30%;
+      margin-left: -2px;
+      border-radius: 50% 50% 0 0;
+      background: #333;
+      z-index: 3;
+      transform-origin: center bottom;
+    }
+
+    .minute {
+      position: absolute;
+      left: 50%;
+      top: 10%;
+      width: 3px;
+      height: 40%;
+      margin-left: -1.5px;
+      border-radius: 50% 50% 0 0;
+      background: #555;
+      z-index: 2;
+      transform-origin: center bottom;
+    }
+
+    .second {
+      position: absolute;
+      left: 50%;
+      top: 6%;
+      width: 2px;
+      height: 44%;
+      margin-left: -1px;
+      border-radius: 50% 50% 0 0;
+      background: #666;
+      z-index: 1;
+      transform-origin: center bottom;
+    }
+
+    .clockBg {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #f6f6f6;
+      box-sizing: border-box;
+    }
+
+    .clockBg i {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-left: -1px;
+      display: block;
+      width: 2px;
+      height: 5px;
+      background: #333;
+      transform-origin: 1px 100px;
+    }
+
+    .clockBg i:nth-child(2) {
+      transform: rotate(30deg);
+    }
+
+    .clockBg i:nth-child(3) {
+      transform: rotate(60deg);
+    }
+
+    .clockBg i:nth-child(4) {
+      transform: rotate(90deg);
+    }
+
+    .clockBg i:nth-child(5) {
+      transform: rotate(120deg);
+    }
+
+    .clockBg i:nth-child(6) {
+      transform: rotate(150deg);
+    }
+
+    .clockBg i:nth-child(7) {
+      transform: rotate(180deg);
+    }
+
+    .clockBg i:nth-child(8) {
+      transform: rotate(210deg);
+    }
+
+    .clockBg i:nth-child(9) {
+      transform: rotate(240deg);
+    }
+
+    .clockBg i:nth-child(10) {
+      transform: rotate(270deg);
+    }
+
+    .clockBg i:nth-child(11) {
+      transform: rotate(300deg);
+    }
+
+    .clockBg i:nth-child(12) {
+      transform: rotate(330deg);
+    }
+
+    .clockBg i:nth-child(3n+1) {
+      height: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="clockBox">
+    <div class="Oo"></div>
+    <div class="hours"></div>
+    <div class="minute"></div>
+    <div class="second"></div>
+    <div class="clockBg">
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+    </div>
+  </div>
+  <script>
+    renderTime()
+    var timer = setInterval(() => {
+      renderTime()
+    }, 1000)
+    function renderTime() {
+      let newTime = new Date()
+      let H = newTime.getHours() > 11 ? newTime.getHours() - 12 : newTime.getHours()
+      let M = newTime.getMinutes()
+      let S = newTime.getSeconds()
+      document.getElementsByClassName('second')[0].style.transform = `rotate(${S*6}deg)`
+      document.getElementsByClassName('minute')[0].style.transform = `rotate(${(M*6)+(S*0.1)}deg)`
+      document.getElementsByClassName('hours')[0].style.transform = `rotate(${(H*30)+(M*0.5)}deg)`
+    }
+  </script>
+</body>
+
+</html>
